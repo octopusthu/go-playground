@@ -20,8 +20,8 @@ func TestTicker(t *testing.T) {
 		case <-done:
 			fmt.Println("Done!")
 			return
-		case t := <-ticker.C:
-			fmt.Println("Current time: ", t)
+		case now := <-ticker.C:
+			fmt.Println("Current time: ", now)
 		}
 	}
 }
