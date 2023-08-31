@@ -2,6 +2,7 @@ package playground
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 	"time"
 )
@@ -21,4 +22,9 @@ func TestParseTimeInLocation(t *testing.T) {
 		t.Error(err)
 	}
 	fmt.Println("parsedTime: ", parsedTime)
+}
+
+func TestTimeFormat(t *testing.T) {
+	fmt.Println(time.Now().Format("20230101"))
+	fmt.Println(strings.ReplaceAll(time.Now().Format(time.DateOnly), "-", ""))
 }
