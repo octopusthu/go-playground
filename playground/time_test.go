@@ -25,6 +25,6 @@ func TestParseTimeInLocation(t *testing.T) {
 }
 
 func TestTimeFormat(t *testing.T) {
-	fmt.Println(time.Now().Format("20230101"))
-	fmt.Println(strings.ReplaceAll(time.Now().Format(time.DateOnly), "-", ""))
+	now := time.Now()
+	fmt.Println(now.Format("20060102"))
 }
