@@ -2,7 +2,6 @@ package playground
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 	"time"
 )
