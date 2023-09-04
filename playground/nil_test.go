@@ -11,3 +11,8 @@ func TestForNil(t *testing.T) {
 		fmt.Println(i, elem)
 	}
 }
+
+func TestPrintNil(t *testing.T) {
+	var pointer *int = nil
+	fmt.Printf("nil pointer: %+v\n", pointer)
+}
