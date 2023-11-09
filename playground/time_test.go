@@ -75,3 +75,10 @@ func TestLastDayOfMonth(t *testing.T) {
 	m, _ = time.Parse(time.DateTime, "2023-03-01 00:00:00")
 	fmt.Printf("lastDayOfMonth(%v): %v\n", m, lastDayOfMonth(m))
 }
+
+func TestMultiplyDurationByVariable(t *testing.T) {
+	month := 31 * 24 * time.Hour
+	multiplier := 3
+	duration := time.Duration(multiplier) * month
+	fmt.Printf("%d * month  = %v\n", multiplier, duration)
+}
