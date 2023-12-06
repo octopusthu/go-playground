@@ -1,3 +1,3 @@
 module go_playground
 
-go 1.20
+go 1.21
