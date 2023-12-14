@@ -5,28 +5,41 @@ import (
 	"testing"
 )
 
-type embedded interface {
-	embeddedMethod()
+type parent interface {
+	parentMethod()
 }
-type embeddedImpl struct{}
+type parentImpl struct{}
 
-func (embeddedImpl) embeddedMethod() {
-	fmt.Println("embeddedImpl.embeddedMethod() invoked!")
-}
-
-type outer interface {
-	outerMethod()
-}
-type outerImpl struct {
-	embedded
+func (parentImpl) parentMethod() {
+	fmt.Println("parentImpl.parentMethod() invoked!")
 }
 
-func (outerImpl) outerMethod() {}
+type child interface {
+	childMethod()
+}
+type childImplEmbeddingParentInterface struct {
+	parent
+}
+type childImplEmbeddingParentImplStruct struct {
+	parentImpl
+}
 
-func TestTypeAssertionOfEmbeddedField(t *testing.T) {
-	var o outer = outerImpl{embedded: embeddedImpl{}}
-	if e, ok := o.(embedded); ok {
-		e.embeddedMethod()
+func (childImplEmbeddingParentInterface) childMethod()  {}
+func (childImplEmbeddingParentImplStruct) childMethod() {}
+
+func TestTypeAssertionOfEmbeddedInterface(t *testing.T) {
+	var o parent = childImplEmbeddingParentInterface{parent: parentImpl{}}
+	if e, ok := o.(childImplEmbeddingParentInterface); ok {
+		e.parentMethod()
+		fmt.Println("o has the concrete type of e!")
+	} else {
+		t.Error("failed to assert that o has the concrete type of e!")
+	}
+}
+func TestTypeAssertionOfEmbeddedStruct(t *testing.T) {
+	var o parent = childImplEmbeddingParentImplStruct{parentImpl: parentImpl{}}
+	if e, ok := o.(childImplEmbeddingParentImplStruct); ok {
+		e.parentMethod()
 		fmt.Println("o has the concrete type of e!")
 	} else {
 		t.Error("failed to assert that o has the concrete type of e!")
