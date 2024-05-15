@@ -5,9 +5,13 @@ import (
 	"testing"
 )
 
-func TestLenOfNilSlice(t *testing.T) {
+func TestNilAndEmptySlices(t *testing.T) {
 	var nilSlice []int8 = nil
-	fmt.Printf("len of a nil slice is %d\n", len(nilSlice))
+	var emptySlice = make([]int8, 0)
+	fmt.Printf("nil slice is nil: %v\n", nilSlice == nil)     // true
+	fmt.Printf("empty slice is nil: %v\n", emptySlice == nil) // false
+	fmt.Printf("len of nil slice is %d\n", len(nilSlice))     // 0
+	fmt.Printf("len of empty slice is %d\n", len(emptySlice)) // 0
 }
 
 func TestForRangeNilSlice(t *testing.T) {
