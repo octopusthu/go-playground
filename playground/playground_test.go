@@ -12,6 +12,12 @@ type MockStruct struct {
 	TimeField   time.Time
 }
 
+var (
+	mockStruct1 = MockStruct{1, "1", time.Now()}
+	mockStruct2 = MockStruct{2, "2", time.Now()}
+	mockStruct3 = MockStruct{3, "3", time.Now()}
+)
+
 func TestStructFieldValues(t *testing.T) {
 	mockStruct := MockStruct{}
 	fmt.Printf("mockStruct: %+v\n", mockStruct)
