@@ -82,3 +82,15 @@ func TestMultiplyDurationByVariable(t *testing.T) {
 	duration := time.Duration(multiplier) * month
 	fmt.Printf("%d * month  = %v\n", multiplier, duration)
 }
+
+func TestAddToTimeDoesNotChangeTheOriginalTime(t *testing.T) {
+	now := time.Now()
+	originalTime := now
+	fmt.Printf("original time: %v\n", originalTime)
+	now.Add(time.Hour)
+	timeAfterCallingAdd := now
+	fmt.Printf("time after calling time.Add(): %v\n", timeAfterCallingAdd)
+	if timeAfterCallingAdd != originalTime {
+		t.Errorf("timeAfterCallingAdd %v not equal to originalTime %v", timeAfterCallingAdd, originalTime)
+	}
+}
